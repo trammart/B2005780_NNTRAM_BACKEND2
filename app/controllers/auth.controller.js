@@ -61,7 +61,7 @@ exports.register = async (req, res, next) => {
     const userService = new UserService(MongoDB.client);
     const existedUser = await userService.findByEmail(req.body?.email);
     if (existedUser) {
-      return next(new ApiError(400, "Tài khoản đã tồn tại."));
+      return next(new ApiError(400, "Tài khoản đã tồn tại, vui lòng sử dụng Email khác."));
     }
     const document = await userService.register(req.body);
     return res.send(document);
